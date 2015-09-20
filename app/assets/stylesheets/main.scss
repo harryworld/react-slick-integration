@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css?family=Vollkorn);
+
+$light-blue: #3490FC;
+$deep-blue: #4A71E2;
+
+.button {
+  border-width: 2px !important;
+  border-radius: 2px !important;
+  font-weight: 600;
+}
+
+.back-button {
+  color: white;
+  font-size: 1.2em;
+  font-weight: 400;
+
+  img {
+    padding-bottom: 2px;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+
+    img {
+      opacity: 0.7;
+    }
+  }
+
+  &:active, &:visited {
+    color: white;
+  }
+
+}
+
+.board {
+
+  p, textarea {
+    font-family: 'Vollkorn', serif;
+    font-size: 1.3em;
+    color: #333;
+  }
+
+  .small-14, .grid-frame, .page-row {
+    background-color: white;
+  }
+
+  .story-container {
+
+    .story-header {
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+
+      .gradient {
+        /* Preprocess by Auto Prefixer */
+        background: linear-gradient(top, transparent, rgba(0,0,0,.8));
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      h1 {
+        color: white;
+        font-size: 1.7em;
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+      }
+    }
+
+    .story-meta {
+      color: #555;
+      background: white;
+      padding: 2em 0;
+      font-size: 2em;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .page-row {
+
+    padding: 0;
+    margin: 0 !important;
+
+    .avatar img {
+      border: 1px solid #DDD;
+      border-radius: 18px;
+      position: absolute;
+      left: 20px;
+      width: 36px;
+    }
+
+    .line {
+      border-left: 1px solid #DDD;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 36px;
+    }
+  }
+
+  .submissions {
+    background-color: white;
+
+    &.small-14 {
+      background-color: white;
+    }
+
+    .page-row {
+
+      .line {
+        border: none;
+      }
+    }
+  }
+
+  .new-submission {
+    background-color: #544966;
+
+    textarea {
+      border-radius: 3px;
+      background: #fdfaff;
+      border: 1px solid light-gray;
+      height: 300px;
+      padding: 1em 0.6em;
+    }
+
+    .textarea-container {
+      background-color: white;
+    }
+
+    .button-actions {
+      margin: 1rem 0;
+    }
+
+    img {
+      margin-left: 15px;
+    }
+  }
+
+  .show-hide {
+    text-align: center;
+  }
+
+  .pending-pages {
+    background: $deep-blue;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+.grid-container {
+  width: 70%;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.square-aspect-ratio {
+  @include aspect-ratio(1, 1);
+  overflow: hidden;
+}
