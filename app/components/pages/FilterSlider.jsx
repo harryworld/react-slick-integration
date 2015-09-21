@@ -5,6 +5,7 @@ const ParseComponent = ParseReact.Component(React);
 import classNames from 'classnames';
 import PageEdit from './PageEdit';
 import Slider from 'react-slick';
+import objectAssign from 'object-assign';
 
 export default class FilterSlider extends ParseComponent {
   constructor(props) {
@@ -71,7 +72,7 @@ export default class FilterSlider extends ParseComponent {
 
   handlePageSave(p, isSaved) {
     this.setState({
-      savedPages: Object.assign({}, this.state.savedPages, {
+      savedPages: objectAssign({}, this.state.savedPages, {
         [p.id.objectId]: isSaved
       })
     });
