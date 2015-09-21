@@ -79,10 +79,16 @@ export default class FilterSlider extends ParseComponent {
   }
 
   render() {
+    var filterBtnClass = classNames({
+      'filter-button': true,
+      'grid-container': true,
+      'active': this.state.isFiltering
+    });
+
     return (
       <div className='filter-slider-section'>
-        <div className='filter-button button grid-container' onClick={this.toggleFilter.bind(this)}>
-          {this.state.isFiltering ? 'Filter is ON' : 'Filter is OFF'}
+        <div className={filterBtnClass} onClick={this.toggleFilter.bind(this)}>
+          <i className='fa fa-star star-icon' />
         </div>
 
         {this.renderSlider()}

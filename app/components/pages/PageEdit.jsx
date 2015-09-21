@@ -24,17 +24,27 @@ export default class PageEdit extends React.Component {
     this.props.onSaveClick(newVal);
   }
 
+  handleOnEditClick() {
+    console.log("handleOnEditClick", this.props);
+  }
+
   render() {
-    console.log('Render PageEdit');
+    var starIconClass = classNames({
+      'fa fa-star': true,
+      'star-icon': true,
+      'active': this.state.isSaved
+    });
 
     return (
       <div className='page-edit-row'>
         <Page {...this.props} />
 
         <div className='footer-buttons'>
-          <div className='button hollow' onClick={this.handleOnSaveClick.bind(this)}>
-            {this.state.isSaved ? 'Saved' : 'NOT Saved'}
+          <div className='edit-button button hollow' onClick={this.handleOnEditClick.bind(this)}>
+            Edit
           </div>
+
+          <i className={starIconClass} onClick={this.handleOnSaveClick.bind(this)} />
         </div>
       </div>
     );

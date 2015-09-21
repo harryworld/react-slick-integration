@@ -142,8 +142,24 @@ $deep-blue: #4A71E2;
 
   .filter-slider-section {
     .filter-button {
+      background-color: #D8D8D8;
+
       margin: 0 auto !important;
       display: block;
+      min-height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .star-icon {
+        font-size: 24px;
+      }
+      &.active {
+        .star-icon {
+          color: #F5BB32;
+        }
+      }
     }
 
     .filter-slide-slick-wrapper {
@@ -177,7 +193,21 @@ $deep-blue: #4A71E2;
       margin: 0 10px !important;
     }
     .footer-buttons {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 10px;
+
+      .star-icon {
+        font-size: 24px;
+        &.active {
+          color: #F5BB32;
+        }
+      }
+
+      .edit-button {
+        margin: 0 10px 0 0;
+      }
     }
   }
 
