@@ -47,8 +47,8 @@ export default class Submissions extends ParseComponent {
           <Slider {...settings}>
             {this.data.pages.map((p,i) => {
               return (
-                <div className="slider-page-wrapper">
-                  <Page key={p.id.objectId} {...p} isSmall={false} />
+                <div key={p.id.objectId}>
+                  <Page {...p} isSmall={false} />
                 </div>
               );
             }, this)}

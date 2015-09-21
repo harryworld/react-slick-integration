@@ -119,9 +119,6 @@ $deep-blue: #4A71E2;
     padding: 10px 40px;
 
     .submissions-slider {
-      display: flex;
-      flex: 1;
-
       .page-row {
         margin: 0 10px !important;
         max-height: 350px;
@@ -135,6 +132,52 @@ $deep-blue: #4A71E2;
           border: none;
         }
       }
+    }
+  }
+
+  .slick-slider {
+    display: flex;
+    flex: 1;
+  }
+
+  .filter-slider-section {
+    .filter-button {
+      margin: 0 auto !important;
+      display: block;
+    }
+
+    .filter-slide-slick-wrapper {
+      background-color: $deep-blue;
+
+      position: relative;
+      padding: 10px 40px;
+      min-height: 200px;
+
+      .filter-slide-slick {
+        .page-row {
+          margin: 0 10px !important;
+          max-height: 350px;
+          min-height: 100px;
+
+          .avatar {
+            min-width: 75px;
+          }
+
+          .line {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .page-edit-row {
+    margin: 0 10px;
+    background: white;
+    .page-row {
+      margin: 0 10px !important;
+    }
+    .footer-buttons {
+      text-align: center;
     }
   }
 

@@ -4,6 +4,7 @@ import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
 import Page from './Page';
 import Submissions from './Submissions';
+import FilterSlider from './FilterSlider';
 import Approve from './Approve';
 
 const Board = class Board extends ParseComponent {
@@ -29,9 +30,7 @@ const Board = class Board extends ParseComponent {
     }
 
     return (
-      <section className="board vertical">
-        <Submissions isShowing={true} {...this.state} />
-
+      <section className='board vertical'>
         <div className='grid-container'>
           {this.data.pages.map(function(p) {
             return (
@@ -39,6 +38,10 @@ const Board = class Board extends ParseComponent {
             );
           }, this)}
         </div>
+
+        <Submissions {...this.state} />
+
+        <FilterSlider />
       </section>
     );
   }
