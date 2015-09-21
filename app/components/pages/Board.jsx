@@ -30,12 +30,15 @@ const Board = class Board extends ParseComponent {
 
     return (
       <section className="board vertical">
-        {this.data.pages.map(function(p) {
-          return (
-            <Page key={p.id.objectId} {...p} />
-          );
-        }, this)}
-        <Submissions {...this.state} />
+        <Submissions isShowing={true} {...this.state} />
+
+        <div className='grid-container'>
+          {this.data.pages.map(function(p) {
+            return (
+              <Page key={p.id.objectId} {...p} />
+            );
+          }, this)}
+        </div>
       </section>
     );
   }

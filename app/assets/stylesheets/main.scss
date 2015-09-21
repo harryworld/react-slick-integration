@@ -86,7 +86,6 @@ $deep-blue: #4A71E2;
   }
 
   .page-row {
-
     padding: 0;
     margin: 0 !important;
 
@@ -113,11 +112,28 @@ $deep-blue: #4A71E2;
     &.small-14 {
       background-color: white;
     }
+  }
 
-    .page-row {
+  .pending-pages {
+    position: relative;
+    padding: 10px 40px;
 
-      .line {
-        border: none;
+    .submissions-slider {
+      display: flex;
+      flex: 1;
+
+      .page-row {
+        margin: 0 10px !important;
+        max-height: 350px;
+        min-height: 100px;
+
+        .avatar {
+          min-width: 75px;
+        }
+
+        .line {
+          border: none;
+        }
       }
     }
   }

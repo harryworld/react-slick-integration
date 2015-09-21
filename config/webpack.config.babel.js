@@ -99,7 +99,13 @@ if (TARGET === 'start' || !TARGET) {
       new ExtractTextPlugin('styles.css'),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlwebpackPlugin({
-        title: pkg.title
+        title: pkg.title,
+        templateContent: renderTemplate(
+          fs.readFileSync(clientAppPath + 'templates/index.tpl', 'utf8'),
+          {
+            app: React.renderToStaticMarkup(<Loading />)
+          }
+        )
       }),
       new webpack.ResolverPlugin(
         new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('../bower.json', ['main'])

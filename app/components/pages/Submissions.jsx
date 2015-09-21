@@ -4,13 +4,13 @@ import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
 import classNames from 'classnames';
 import Page from './Page';
+import Slider from 'react-slick';
 
 export default class Submissions extends ParseComponent {
   constructor(props) {
     super(props);
     this.state = {
       isShowing: props.isShowing,
-      showHideText: props.showHideText,
       isSmall: this.props.isSmall
     };
     this.data = {
@@ -27,23 +27,32 @@ export default class Submissions extends ParseComponent {
   toggleShowHide() {
     this.state.isShowing = !this.state.isShowing;
     this.setState({isSmall: !this.state.isShowing});
-
-    if (this.state.isShowing) {
-      this.setState({showHideText: 'Hide submissions'});
-    } else {
-      this.setState({showHideText: 'See current submissions'});
-    }
   }
 
   renderPending() {
     if (this.state.isShowing && this.data.pages.length) {
+      var settings = {
+        className: 'submissions-slider',
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        // adaptiveHeight: true
+      };
+
+
       return (
         <div className="pending-pages small-up-3 grid-block">
-          {this.data.pages.map((p) => {
-            return (
-              <Page key={p.id.objectId} {...p} isSmall={false} />
-            );
-          }, this)}
+          <Slider {...settings}>
+            {this.data.pages.map((p,i) => {
+              return (
+                <div className="slider-page-wrapper">
+                  <Page key={p.id.objectId} {...p} isSmall={false} />
+                </div>
+              );
+            }, this)}
+          </Slider>
         </div>
       );
     }
@@ -55,10 +64,13 @@ export default class Submissions extends ParseComponent {
         <div className='grid-container'>
           <div className='submissions vertical grid-block'>
             <div className='show-hide'>
-              <div className="button hollow" onClick={this.toggleShowHide.bind(this)}>{this.state.showHideText}</div>
+              <div className="button hollow" onClick={this.toggleShowHide.bind(this)}>
+                {this.state.isShowing ? 'Hide submissions' : 'See current submissions'}
+              </div>
             </div>
           </div>
         </div>
+
         {this.renderPending()}
       </div>
     );
@@ -67,14 +79,12 @@ export default class Submissions extends ParseComponent {
 
 Submissions.propTypes = {
   isShowing: React.PropTypes.bool.isRequired,
-  showHideText: React.PropTypes.string.isRequired,
   isSmall: React.PropTypes.bool.isRequired,
   pages: React.PropTypes.array.isRequired
 };
 
 Submissions.defaultProps = {
   isShowing: false,
-  showHideText: 'See current submissions',
   isSmall: true,
   pages: []
 };
