@@ -25,7 +25,7 @@ export default class PageEdit extends React.Component {
   }
 
   handleOnEditClick() {
-    console.log("handleOnEditClick", this.props);
+    console.log('handleOnEditClick', this.props);
   }
 
   render() {
