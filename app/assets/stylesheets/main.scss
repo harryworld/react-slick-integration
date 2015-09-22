@@ -241,6 +241,8 @@ $deep-blue: #4A71E2;
   }
 
   .slick-slider-wrapper {
+    display: flex;
+    flex: 1;
     position: relative;
     padding: 0 40px;
   }
