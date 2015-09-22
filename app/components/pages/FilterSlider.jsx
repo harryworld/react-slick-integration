@@ -44,7 +44,7 @@ export default class FilterSlider extends ParseComponent {
 
     var settings = {
       className: 'filter-slide-slick',
-      slidesToShow: pages.length > 3 ? 3 : pages.length,
+      // slidesToShow: pages.length > 3 ? 3 : pages.length,
     };
 
     return (
