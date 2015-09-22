@@ -27,15 +27,18 @@ export default class SlickSlider extends React.Component {
 
   render() {
     return (
-      <Slider {...this.state.settings}>
-        {this.props.children}
-      </Slider>
+      <div className='slick-slider-wrapper'>
+        <Slider {...this.state.settings}>
+          {this.props.children}
+        </Slider>
+      </div>
     );
   }
 }
 
+
 SlickSlider.propTypes = {
-  settings: React.PropTypes.object,
+  settings: React.PropTypes.object
 };
 
 SlickSlider.defaultProps = {

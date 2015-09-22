@@ -211,6 +211,40 @@ $deep-blue: #4A71E2;
     }
   }
 
+  .board-page {
+    .page-wrapper {
+      display: flex;
+      align-items: center;
+
+      .toggle-view-button {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .page-slider-wrapper {
+      background-color: $deep-blue;
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
+
+      .page-slider-slick {
+        .page-row {
+          margin: 0 10px !important;
+        }
+      }
+      .close-slider-button {
+        margin: 10px auto;
+        max-width: 100px;
+      }
+    }
+  }
+
+  .slick-slider-wrapper {
+    position: relative;
+    padding: 0 40px;
+  }
+
   .new-submission {
     background-color: #544966;
 

@@ -11,7 +11,6 @@ export default class PageEdit extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log('nextState:', nextProps.id.objectId, this.props.id.objectId, nextState == this.state);
     return nextProps.id.objectId != this.props.id.objectId
           || nextState != this.state;
   }
