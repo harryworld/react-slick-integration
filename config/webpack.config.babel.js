@@ -52,7 +52,7 @@ var common = {
         include: clientAppPath
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|woff|woff2|ttf|eot)/i,
         loaders: [
           'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
@@ -99,13 +99,7 @@ if (TARGET === 'start' || !TARGET) {
       new ExtractTextPlugin('styles.css'),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlwebpackPlugin({
-        title: pkg.title,
-        templateContent: renderTemplate(
-          fs.readFileSync(clientAppPath + 'templates/index.tpl', 'utf8'),
-          {
-            app: React.renderToStaticMarkup(<Loading />)
-          }
-        )
+        title: pkg.title
       }),
       new webpack.ResolverPlugin(
         new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('../bower.json', ['main'])

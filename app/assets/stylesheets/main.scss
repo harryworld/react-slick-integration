@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Vollkorn);
 
+$fa-font-path: "~font-awesome/fonts/";
+@import "~font-awesome/scss/font-awesome.scss";
+
+$slick-font-path: "~slick-carousel/slick/fonts/";
+$slick-loader-path: "~slick-carousel/slick/";
+@import "~slick-carousel/slick/slick.scss";
+@import "~slick-carousel/slick/slick-theme.scss";
+
+
 $light-blue: #3490FC;
 $deep-blue: #4A71E2;
 
