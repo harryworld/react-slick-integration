@@ -31,18 +31,18 @@ const Board = class Board extends ParseComponent {
 
     return (
       <section className='board vertical'>
-        <Submissions {...this.state} />
-
         {this.data.pages.map(function(p) {
           return (
             <BoardPage key={p.id.objectId} {...p} />
           );
         }, this)}
 
+        <Submissions {...this.state} />
+
+        <FilterSlider />
       </section>
     );
 
-        // <FilterSlider />
   }
 };
 
