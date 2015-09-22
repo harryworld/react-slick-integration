@@ -4,7 +4,7 @@ import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
 import classNames from 'classnames';
 import PageEdit from './PageEdit';
-import Slider from 'react-slick';
+import SlickSlider from './SlickSlider';
 import objectAssign from 'object-assign';
 
 export default class FilterSlider extends ParseComponent {
@@ -44,16 +44,12 @@ export default class FilterSlider extends ParseComponent {
 
     var settings = {
       className: 'filter-slide-slick',
-      infinite: false,
-      speed: 500,
       slidesToShow: pages.length > 3 ? 3 : pages.length,
-      slidesToScroll: 1,
-      arrows: true
     };
 
     return (
       <div className='filter-slide-slick-wrapper small-up-3 grid-block'>
-        <Slider {...settings}>
+        <SlickSlider settings={settings} key={this.state.isFiltering ? 'filterOn' : 'filterOff' }>
           {pages.map((p,i) => {
             return (
               <div key={p.id.objectId}>
@@ -65,7 +61,7 @@ export default class FilterSlider extends ParseComponent {
               </div>
             );
           }, this)}
-        </Slider>
+        </SlickSlider>
       </div>
     );
   }

@@ -29,17 +29,17 @@ const Board = class Board extends ParseComponent {
       let lastPage = this.data.pages[pLength - 1];
     }
 
+        // <div className='grid-container'>
+        //   {this.data.pages.map(function(p) {
+        //     return (
+        //       <Page key={p.id.objectId} {...p} />
+        //     );
+        //   }, this)}
+        // </div>
+
+        // <Submissions {...this.state} />
     return (
       <section className='board vertical'>
-        <div className='grid-container'>
-          {this.data.pages.map(function(p) {
-            return (
-              <Page key={p.id.objectId} {...p} />
-            );
-          }, this)}
-        </div>
-
-        <Submissions {...this.state} />
 
         <FilterSlider />
       </section>

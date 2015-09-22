@@ -4,7 +4,7 @@ import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
 import classNames from 'classnames';
 import Page from './Page';
-import Slider from 'react-slick';
+import SlickSlider from './SlickSlider';
 
 export default class Submissions extends ParseComponent {
   constructor(props) {
@@ -30,32 +30,23 @@ export default class Submissions extends ParseComponent {
   }
 
   renderPending() {
-    if (this.state.isShowing && this.data.pages.length) {
-      var settings = {
-        className: 'submissions-slider',
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        // adaptiveHeight: true
-      };
-
-
-      return (
-        <div className="pending-pages small-up-3 grid-block">
-          <Slider {...settings}>
-            {this.data.pages.map((p,i) => {
-              return (
-                <div key={p.id.objectId}>
-                  <Page {...p} isSmall={false} />
-                </div>
-              );
-            }, this)}
-          </Slider>
-        </div>
-      );
+    if (!this.state.isShowing || !this.data.pages.length) {
+      return null;
     }
+
+    return (
+      <div className="pending-pages small-up-3 grid-block">
+        <SlickSlider settings={{className: 'submissions-slider'}}>
+          {this.data.pages.map((p,i) => {
+            return (
+              <div key={p.id.objectId}>
+                <Page {...p} isSmall={false} />
+              </div>
+            );
+          }, this)}
+        </SlickSlider>
+      </div>
+    );
   }
 
   render() {
