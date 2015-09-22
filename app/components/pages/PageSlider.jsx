@@ -25,7 +25,7 @@ export default class PageSlider extends ParseComponent {
   render() {
     return (
       <div className='page-slider-wrapper'>
-        <SlickSlider settings={{className: 'page-slider-slick'}} key={this.state.isFiltering ? 'filterOn' : 'filterOff' }>
+        <SlickSlider settings={{className: 'page-slider-slick'}}>
           {this.data.pages.map((p,i) => {
             return (
               <div key={p.id.objectId}>

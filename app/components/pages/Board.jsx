@@ -5,7 +5,6 @@ const ParseComponent = ParseReact.Component(React);
 import BoardPage from './BoardPage';
 import Submissions from './Submissions';
 import FilterSlider from './FilterSlider';
-import Approve from './Approve';
 
 const Board = class Board extends ParseComponent {
   constructor(props) {

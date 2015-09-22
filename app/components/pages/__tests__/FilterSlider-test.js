@@ -47,7 +47,6 @@ describe('FilterSlider logic', () => {
     });
 
     it('renders empty list', () => {
-      Parse.initialize('testid', 'testkey');
       expect(component).toBeTruthy();
 
       let rootElement = renderedDOM();

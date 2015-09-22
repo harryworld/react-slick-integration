@@ -2,7 +2,6 @@ import React from 'react';
 import { Parse } from 'parse';
 import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
-import classNames from 'classnames';
 import Page from './Page';
 import SlickSlider from './SlickSlider';
 
