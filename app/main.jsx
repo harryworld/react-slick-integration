@@ -9,7 +9,6 @@ import secrets from '../config/secrets';
 import Routes from './Routes';
 
 Parse.initialize(secrets.parse.applicationId, secrets.parse.javascriptKey);
-Parse.User.enableRevocableSession();
 
 Router.run(Routes, Router.HistoryLocation, (Handler) => {
   return React.render(<Handler/>, document.body);

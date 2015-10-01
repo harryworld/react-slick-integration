@@ -1,14 +1,19 @@
 import React from 'react';
+import Transition from 'react-motion-ui-pack';
+import classNames from 'classnames';
+
 import Page from './Page';
 import PageSlider from './PageSlider';
-import classNames from 'classnames';
+import Comments from '../comments/Comments';
 
 export default class BoardPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       viewType: this.props.viewType,
+      commentBoxOpen: true
     };
+    this.onClickComment = this.onClickComment.bind(this);
   }
 
   handleOnToggleViewType() {
@@ -17,10 +22,15 @@ export default class BoardPage extends React.Component {
     });
   }
 
+  onClickComment() {
+    console.log(this);
+    this.setState({commentBoxOpen: !this.state.commentBoxOpen});
+  }
+
   renderPage() {
    return (
       <div className='page-wrapper grid-container'>
-        <Page {...this.props} />
+        <Page {...this.props} onClickComment={this.onClickComment} />
 
         <div className='toggle-view-button'
              onClick={this.handleOnToggleViewType.bind(this)}>
@@ -46,6 +56,27 @@ export default class BoardPage extends React.Component {
     return (
       <div className='board-page'>
         {contentElement}
+
+        <Transition
+          onlyChild={true}
+          appear={true}
+          enter={{
+            opacity: {val: 1},
+            translateY: {val: 0, config: [400, 10]}
+          }}
+          leave={{
+            opacity: {val: 0},
+            translateY: {val: 250}
+          }}
+        >
+        {
+          this.state.commentBoxOpen &&
+          <div className='comment-box-wrapper'>
+            <Comments />
+          </div>
+        }
+
+        </Transition>
       </div>
     );
   }

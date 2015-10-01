@@ -113,6 +113,15 @@ $deep-blue: #4A71E2;
       bottom: 0;
       left: 36px;
     }
+
+    .comment-button {
+      position: absolute;
+      top: 40px;
+      left: 20px;
+
+      border: 0;
+      background: transparent;
+    }
   }
 
   .submissions {
@@ -218,7 +227,15 @@ $deep-blue: #4A71E2;
     }
   }
 
+  .comment-box {
+    position: absolute;
+    background: red;
+    padding: 1em;
+    border-radius: 2px;
+  }
+
   .board-page {
+    min-height: 5em;
     .page-wrapper {
       display: flex;
       align-items: center;

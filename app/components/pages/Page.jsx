@@ -10,6 +10,11 @@ export default class Page extends React.Component {
       refPageId: this.props.refPageId,
       isSmall: this.props.isSmall
     };
+    this.handleClickComment = this.handleClickComment.bind(this);
+  }
+
+  handleClickComment() {
+    this.props.onClickComment(this.props.objectId);
   }
 
   smallAvatarUrl() {
@@ -37,6 +42,7 @@ export default class Page extends React.Component {
         <div className='avatar small-3'>
           {this.smallAvatarUrl()}
         </div>
+        <button className="comment-button" onClick={this.handleClickComment}><i className="fa fa-comment"></i></button>
         <div className='content small-18'>
           {this.contentText()}
           {this.imageContent()}
