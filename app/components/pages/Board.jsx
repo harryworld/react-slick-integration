@@ -2,9 +2,9 @@ import React from 'react';
 import { Parse } from 'parse';
 import ParseReact from 'parse-react';
 const ParseComponent = ParseReact.Component(React);
-import Page from './Page';
+import BoardPage from './BoardPage';
 import Submissions from './Submissions';
-import Approve from './Approve';
+import FilterSlider from './FilterSlider';
 
 const Board = class Board extends ParseComponent {
   constructor(props) {
@@ -29,15 +29,19 @@ const Board = class Board extends ParseComponent {
     }
 
     return (
-      <section className="board vertical">
+      <section className='board vertical'>
         {this.data.pages.map(function(p) {
           return (
-            <Page key={p.id.objectId} {...p} />
+            <BoardPage key={p.id.objectId} {...p} />
           );
         }, this)}
+
         <Submissions {...this.state} />
+
+        <FilterSlider />
       </section>
     );
+
   }
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 
 export default class Page extends React.Component {
   constructor(props) {
@@ -33,16 +32,14 @@ export default class Page extends React.Component {
 
   render() {
     return (
-      <div className='grid-container'>
-        <div className='page-row small-24 large-24 grid-block'>
-          <div className="line"></div>
-          <div className="avatar small-3">
-            {this.smallAvatarUrl()}
-          </div>
-          <div className="content small-18">
-            {this.contentText()}
-            {this.imageContent()}
-          </div>
+      <div className='page-row small-24 large-24 grid-block'>
+        <div className='line'></div>
+        <div className='avatar small-3'>
+          {this.smallAvatarUrl()}
+        </div>
+        <div className='content small-18'>
+          {this.contentText()}
+          {this.imageContent()}
         </div>
       </div>
     );

@@ -20,17 +20,11 @@ describe('Page', () => {
 
   it('renders a list with proper CSS classes', () => {
     let rootElement = renderedDOM();
-
     expect(rootElement.tagName).toEqual('DIV');
-    expect(rootElement.classList.length).toEqual(1);
-    expect(rootElement.classList).toContain('grid-container');
-
-    let divComponent = TestUtils.findRenderedDOMComponentWithClass(component, 'page-row');
-    let divWrapper = React.findDOMNode(divComponent);
-    expect(divWrapper.classList.length).toEqual(4);
-    expect(divWrapper.classList).toContain('grid-block');
-    expect(divWrapper.classList).toContain('small-24');
-    expect(divWrapper.classList).toContain('large-24');
+    expect(rootElement.classList.length).toEqual(4);
+    expect(rootElement.classList).toContain('grid-block');
+    expect(rootElement.classList).toContain('small-24');
+    expect(rootElement.classList).toContain('large-24');
 
     let lineElement = TestUtils.findRenderedDOMComponentWithClass(component, 'line');
     expect(lineElement).toBeTruthy();
