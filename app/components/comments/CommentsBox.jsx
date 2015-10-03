@@ -31,12 +31,12 @@ export default class CommentsBox extends ParseComponent {
   render() {
     return (
       <div className='comment-box'>
-        <p className='header'> Chat </p>
+        <p className='header'>Chat</p>
 
         <div className='message-area'>
-          {this.data.comments.map(p => {
-            return <Comment {...p} />;
-          })}
+          {this.data.comments.map(p =>
+            <Comment key={p.id.objectId} {...p} />
+          )}
     		</div>
 
     	<input type='text'
