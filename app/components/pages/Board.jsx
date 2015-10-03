@@ -20,6 +20,15 @@ const Board = class Board extends ParseComponent {
     };
   }
 
+  handleShowCommentBox(ref) {
+    this.data.pages.forEach(p => {
+      var currentRef = 'BoardPage_'+p.id.objectId;
+      if (ref!=currentRef) {
+        this.refs[currentRef].hideCommentBox();
+      }
+    });
+  }
+
   render() {
     let newSubmission;
 
@@ -30,9 +39,13 @@ const Board = class Board extends ParseComponent {
 
     return (
       <section className='board vertical'>
-        {this.data.pages.map(function(p) {
+        {this.data.pages.map(p => {
+          var ref = 'BoardPage_'+p.id.objectId;
           return (
-            <BoardPage key={p.id.objectId} {...p} />
+            <BoardPage {...p}
+                        key={p.id.objectId}
+                        ref={ref}
+                        onShowComentsBox={this.handleShowCommentBox.bind(this, ref)}/>
           );
         }, this)}
 

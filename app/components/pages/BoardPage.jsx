@@ -24,6 +24,11 @@ export default class BoardPage extends React.Component {
 
   onClickComment() {
     this.setState({commentBoxOpen: !this.state.commentBoxOpen});
+    this.props.onShowComentsBox();
+  }
+
+  hideCommentBox() {
+    this.setState({commentBoxOpen: false});
   }
 
   renderPage() {
@@ -80,7 +85,8 @@ export default class BoardPage extends React.Component {
 }
 
 BoardPage.propTypes = {
-  viewType: React.PropTypes.oneOf(['PAGE', 'SLIDER'])
+  viewType: React.PropTypes.oneOf(['PAGE', 'SLIDER']),
+  onShowComentsBox: React.PropTypes.func.isRequired
 };
 
 BoardPage.defaultProps = {
