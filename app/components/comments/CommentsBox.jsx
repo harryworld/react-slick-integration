@@ -28,6 +28,18 @@ export default class CommentsBox extends ParseComponent {
     };
   }
 
+  handleAddComment(e) {
+    e.preventDefault();
+
+    var msg = React.findDOMNode(this.refs.message).value.trim();
+    console.log('New message', msg);
+
+    // clear input
+    React.findDOMNode(this.refs.message).value = '';
+
+    return;
+  }
+
   render() {
     return (
       <div className='comment-box'>
@@ -39,8 +51,11 @@ export default class CommentsBox extends ParseComponent {
           )}
     		</div>
 
-    	<input type='text'
-			   placeholder='Your message' />
+        <form onSubmit={this.handleAddComment.bind(this)}>
+        	<input type='text'
+                 ref='message'
+        			   placeholder='Your message' />
+        </form>
       </div>
     );
   }
