@@ -18,7 +18,8 @@ export default class BoardPage extends React.Component {
 
   handleOnToggleViewType() {
     this.setState({
-      viewType: this.state.viewType == 'PAGE' ? 'SLIDER' : 'PAGE'
+      viewType: this.state.viewType == 'PAGE' ? 'SLIDER' : 'PAGE',
+      commentBoxOpen: this.state.viewType == 'PAGE' ? false : this.state.commentBoxOpen
     });
   }
 
@@ -62,22 +63,18 @@ export default class BoardPage extends React.Component {
         {contentElement}
 
         <Transition onlyChild appear
-          enter={{
-            opacity: {val: 1},
-            translateY: {val: 0, config: [400, 10]}
-          }}
-          leave={{
-            opacity: {val: 0},
-            translateY: {val: 250}
-          }}
-        >
-        {
-          this.state.commentBoxOpen &&
-          <div className='comment-box-wrapper'>
-            <CommentsBox pageId={this.props.id.objectId}/>
-          </div>
-        }
-
+                    enter={{
+                      opacity: {val: 1},
+                      translateY: {val: 0, config: [200, 10]}
+                    }}
+                    leave={{
+                      opacity: {val: 0},
+                      translateY: {val: 250}
+                    }}>
+          { this.state.commentBoxOpen &&
+            <div className='comment-box-wrapper'>
+              <CommentsBox pageId={this.props.id.objectId}/>
+            </div> }
         </Transition>
       </div>
     );
