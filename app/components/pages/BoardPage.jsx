@@ -4,14 +4,14 @@ import classNames from 'classnames';
 
 import Page from './Page';
 import PageSlider from './PageSlider';
-import Comments from '../comments/Comments';
+import CommentsBox from '../comments/CommentsBox';
 
 export default class BoardPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       viewType: this.props.viewType,
-      commentBoxOpen: true
+      commentBoxOpen: false
     };
     this.onClickComment = this.onClickComment.bind(this);
   }
@@ -23,7 +23,6 @@ export default class BoardPage extends React.Component {
   }
 
   onClickComment() {
-    console.log(this);
     this.setState({commentBoxOpen: !this.state.commentBoxOpen});
   }
 
@@ -57,9 +56,7 @@ export default class BoardPage extends React.Component {
       <div className='board-page'>
         {contentElement}
 
-        <Transition
-          onlyChild={true}
-          appear={true}
+        <Transition onlyChild appear
           enter={{
             opacity: {val: 1},
             translateY: {val: 0, config: [400, 10]}
@@ -72,7 +69,7 @@ export default class BoardPage extends React.Component {
         {
           this.state.commentBoxOpen &&
           <div className='comment-box-wrapper'>
-            <Comments />
+            <CommentsBox pageId={this.props.id.objectId}/>
           </div>
         }
 
