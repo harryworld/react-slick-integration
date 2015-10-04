@@ -6,8 +6,9 @@ export default class Comments extends React.Component {
   }
 
   render() {
-    var imgSrc = this.props.creator && this.props.creator.smallAvatar
-      ? this.props.creator.smallAvatar._url
+    var creator = this.props.creator || {};
+    var imgSrc = creator && creator.smallAvatar
+      ? creator.smallAvatar._url
       : require('../../assets/images/avatar.png');
 
     return (
@@ -15,9 +16,8 @@ export default class Comments extends React.Component {
         <img src={imgSrc} />
 
         <div className='text'>
-          <p className='username'>{this.props.creator.username || 'Jane Doe'}</p>
-
-          {this.props.content}
+          <p className='username'>{creator.username || 'Jane Doe'}</p>
+          <span className='content'>{this.props.content}</span>
         </div>
       </div>
     );

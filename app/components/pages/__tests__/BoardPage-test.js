@@ -14,7 +14,7 @@ describe('BoardPage logic', () => {
     beforeEach(() => {
       Parse.initialize('testid', 'testkey');
 
-      root = TestUtils.renderIntoDocument(<BoardPage />);
+      root = TestUtils.renderIntoDocument(<BoardPage onShowComentsBox={()=>{}}/>);
       getRootDOM = () => React.findDOMNode(root);
     });
 

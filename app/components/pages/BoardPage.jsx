@@ -65,7 +65,7 @@ export default class BoardPage extends React.Component {
   renderSlider() {
     return (
       <PageSlider {...this.props}
-                  onClose={this.handleOnToggleViewType.bind(this)} />
+          onClose={this.handleOnToggleViewType.bind(this)} />
     );
   }
 
