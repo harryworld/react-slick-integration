@@ -35,11 +35,28 @@ export default class BoardPage extends React.Component {
   renderPage() {
    return (
       <div className='page-wrapper grid-container'>
-        <Page {...this.props} onClickComment={this.onClickComment} />
+        <div className='center'>
+          <Page {...this.props} onClickComment={this.onClickComment} />
 
-        <div className='toggle-view-button'
-             onClick={this.handleOnToggleViewType.bind(this)}>
-          Show more
+          <div className='toggle-view-button'
+               onClick={this.handleOnToggleViewType.bind(this)}>
+            Show more
+          </div>
+
+          <Transition onlyChild appear
+                      enter={{
+                        opacity: {val: 1},
+                        translateY: {val: 0, config: [200, 10]}
+                      }}
+                      leave={{
+                        opacity: {val: 0},
+                        translateY: {val: 250}
+                      }}>
+            { this.state.commentBoxOpen &&
+              <div className='comment-box-wrapper'>
+                <CommentsBox pageId={this.props.id.objectId}/>
+              </div> }
+          </Transition>
         </div>
       </div>
     );
@@ -61,21 +78,6 @@ export default class BoardPage extends React.Component {
     return (
       <div className='board-page'>
         {contentElement}
-
-        <Transition onlyChild appear
-                    enter={{
-                      opacity: {val: 1},
-                      translateY: {val: 0, config: [200, 10]}
-                    }}
-                    leave={{
-                      opacity: {val: 0},
-                      translateY: {val: 250}
-                    }}>
-          { this.state.commentBoxOpen &&
-            <div className='comment-box-wrapper'>
-              <CommentsBox pageId={this.props.id.objectId}/>
-            </div> }
-        </Transition>
       </div>
     );
   }

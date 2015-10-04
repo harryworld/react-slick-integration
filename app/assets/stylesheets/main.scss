@@ -230,6 +230,7 @@ $deep-blue: #4A71E2;
     z-index: 1;
     position: absolute;
     top: 0;
+    left: -255px;
     min-width: 230px;
     max-width: 230px;
     &:before {
@@ -294,8 +295,11 @@ $deep-blue: #4A71E2;
     position: relative;
     min-height: 5em;
     .page-wrapper {
-      display: flex;
-      align-items: center;
+      .center {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
 
       .toggle-view-button {
         margin: 0;
