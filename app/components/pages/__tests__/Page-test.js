@@ -12,7 +12,7 @@ describe('Page', () => {
 
     avatarElement = TestUtils.findRenderedDOMComponentWithClass(component, 'avatar');
     contentElement = TestUtils.findRenderedDOMComponentWithClass(component, 'content');
-  })
+  });
 
   it('renders', () => {
     expect(component).toBeTruthy();
@@ -54,7 +54,7 @@ describe('Page', () => {
           _url: 'http://i.imgur.com/9f6538R.png'
         }
       }
-    })
+    });
 
     let imgElement = TestUtils.findRenderedDOMComponentWithTag(avatarElement, 'img');
     expect(imgElement).toBeTruthy();

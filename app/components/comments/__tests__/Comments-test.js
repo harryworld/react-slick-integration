@@ -2,11 +2,9 @@ import React from 'react/addons';
 import Comment from '../Comment';
 
 describe('Comment', () => {
-  describe('Comment without params', () => {
+  describe('without props', () => {
     const { TestUtils } = React.addons;
     let component, renderedDOM;
-    let avatarElement, contentElement;
-
     beforeEach(() => {
       component = TestUtils.renderIntoDocument(<Comment />);
       renderedDOM = () => React.findDOMNode(component);
@@ -16,7 +14,7 @@ describe('Comment', () => {
       expect(component).toBeTruthy();
     });
 
-    it('renders a list with proper CSS classes', () => {
+    it('renders with proper CSS classes', () => {
       let rootElement = renderedDOM();
       expect(rootElement.tagName).toEqual('DIV');
       expect(rootElement.classList).toContain('comment');
@@ -39,8 +37,9 @@ describe('Comment', () => {
     });
   });
 
-  describe('Comment with params', () => {
+  describe('with props', () => {
     const { TestUtils } = React.addons;
+    let component, renderedDOM;
     const TEST_DATA = {
       content: 'TEST_CONTENT',
       creator: {
@@ -51,9 +50,6 @@ describe('Comment', () => {
       }
     };
 
-    let component, renderedDOM;
-    let avatarElement, contentElement;
-
     beforeEach(() => {
       component = TestUtils.renderIntoDocument(<Comment {...TEST_DATA} />);
       renderedDOM = () => React.findDOMNode(component);
@@ -63,7 +59,7 @@ describe('Comment', () => {
       expect(component).toBeTruthy();
     });
 
-    it('renders a list with proper CSS classes', () => {
+    it('renders with proper CSS classes', () => {
       let rootElement = renderedDOM();
       expect(rootElement.tagName).toEqual('DIV');
       expect(rootElement.classList).toContain('comment');
@@ -97,35 +93,4 @@ describe('Comment', () => {
       expect(contentElement.props.children).toEqual(TEST_DATA.content);
     });
   });
-
 });
-
-
-    // it('shows content image <img> wrapped by <div>', () => {
-    //   component.setState({
-    //     image: {
-    //       _url: 'http://i.imgur.com/9f6538R.png'
-    //     },
-    //     refPageId: 123
-    //   });
-
-    //   let contentDOMNode = React.findDOMNode(contentElement);
-    //   expect(contentDOMNode.children[1].tagName).toEqual('DIV');
-    //   expect(contentDOMNode.children[1].children[0].tagName).toEqual('IMG');
-
-    //   let imgElement = TestUtils.findRenderedDOMComponentWithTag(contentElement, 'img');
-    //   expect(imgElement).toBeTruthy();
-    //   expect(imgElement.props.src).toEqual('http://i.imgur.com/9f6538R.png');
-    // });
-
-    // it('should not show image for the beginning comment extracted from story', () => {
-    //   component.setState({
-    //     image: {
-    //       _url: 'http://i.imgur.com/9f6538R.png'
-    //     }
-    //   });
-
-    //   expect(() => {
-    //     TestUtils.findRenderedDOMComponentWithTag(contentElement, 'img');
-    //   }).toThrow();
-    // });

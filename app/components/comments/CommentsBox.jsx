@@ -10,7 +10,7 @@ export default class CommentsBox extends ParseComponent {
     super(props);
 
     this.data = {
-      comments: []
+      comments: this.props.comments
     };
   }
   observe(props) {
