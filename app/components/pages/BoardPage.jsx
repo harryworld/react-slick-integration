@@ -20,17 +20,35 @@ export default class BoardPage extends React.Component {
       isCommentBoxOpen: false,
       bringToButtonStatus: BRING_TO_STATUS.NONE
     };
-    this.handleClickComment = this.handleClickComment.bind(this);
 
     this.handleScroll = function() {
-      var rootElementTop = React.findDOMNode(this).offsetTop;
-      if (rootElementTop < window.scrollY) {
-        this.setState({ bringToButtonStatus: BRING_TO_STATUS.TOP });
-      } else if (rootElementTop > window.scrollY + window.innerHeight) {
-        this.setState({ bringToButtonStatus: BRING_TO_STATUS.DOWN });
+      var isArrowVisible = false;
+      var bringToButtonStatus = BRING_TO_STATUS.NONE;
+
+      var rootOffsetTop = React.findDOMNode(this).offsetTop;
+      if (rootOffsetTop < window.scrollY) {
+        bringToButtonStatus = BRING_TO_STATUS.TOP;
+      } else if (rootOffsetTop > window.scrollY + window.innerHeight) {
+        bringToButtonStatus = BRING_TO_STATUS.DOWN;
       } else {
-        this.setState({ bringToButtonStatus: BRING_TO_STATUS.NONE });
+        bringToButtonStatus = BRING_TO_STATUS.NONE;
+
+        // calculate arrow position
+        var commentsBoxTop = React.findDOMNode(this.refs.commentsBoxWrapper).offsetTop;
+        var commentsBoxHeight = React.findDOMNode(this.refs.commentsBox).offsetHeight;
+        var rootScreenTopPosition = rootOffsetTop - window.scrollY;
+        console.log('rootScreenTopPosition:', rootScreenTopPosition);
+        console.log('commentsBoxTop:', commentsBoxTop);
+        if (rootScreenTopPosition > commentsBoxTop &&
+            rootScreenTopPosition < commentsBoxTop + commentsBoxHeight - 100) {
+          isArrowVisible = true;
+        }
       }
+
+      this.setState({
+        bringToButtonStatus: bringToButtonStatus,
+        isArrowVisible: isArrowVisible
+      });
     }.bind(this);
   }
 
@@ -75,11 +93,34 @@ export default class BoardPage extends React.Component {
   renderPage() {
    return (
       <div className='page-wrapper grid-container'>
-        <Page {...this.props} onClickComment={this.handleClickComment} />
+        <div className='center'>
+          <Page {...this.props} onClickComment={this.handleClickComment.bind(this)} />
 
-        <div className='toggle-view-button'
-             onClick={this.handleOnToggleViewType.bind(this)}>
-          Show more
+          <div className='toggle-view-button'
+               onClick={this.handleOnToggleViewType.bind(this)}>
+            Show more
+          </div>
+
+          {this.state.isArrowVisible && <div className='right-arrow'></div>}
+
+          <Transition onlyChild appear
+                      enter={{
+                        opacity: {val: 1},
+                        translateY: {val: 0, config: [200, 10]}
+                      }}
+                      leave={{
+                        opacity: {val: 0},
+                        translateY: {val: 250}
+                      }}>
+            { this.state.isCommentBoxOpen &&
+              <div className='comment-box-wrapper' ref='commentsBoxWrapper'>
+                {this.renderBringTo(BRING_TO_STATUS.TOP)}
+
+                <CommentsBox ref='commentsBox' pageId={this.props.id.objectId}/>
+
+                {this.renderBringTo(BRING_TO_STATUS.DOWN)}
+              </div> }
+          </Transition>
         </div>
       </div>
     );
@@ -122,23 +163,6 @@ export default class BoardPage extends React.Component {
       <div className={rootClass}
             ref='myRoot'>
         {contentElement}
-
-        <Transition onlyChild appear
-                    enter={{
-                      opacity: {val: 1},
-                      translateY: {val: 0, config: [200, 10]}
-                    }}
-                    leave={{
-                      opacity: {val: 0},
-                      translateY: {val: 250}
-                    }}>
-          { this.state.isCommentBoxOpen &&
-            <div className='comment-box-wrapper'>
-              {this.renderBringTo(BRING_TO_STATUS.TOP)}
-              <CommentsBox pageId={this.props.id.objectId}/>
-              {this.renderBringTo(BRING_TO_STATUS.DOWN)}
-            </div> }
-        </Transition>
       </div>
     );
   }
