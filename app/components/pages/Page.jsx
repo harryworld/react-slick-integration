@@ -53,3 +53,7 @@ export default class Page extends React.Component {
 }
 
 Page.defaultProps = { isSmall: true };
+
+Page.propTypes = {
+  onClickComment: React.PropTypes.func.isRequired
+};
